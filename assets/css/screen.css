@@ -478,8 +478,10 @@ margin on the iframe, cause it breaks stuff. */
 /* MMI navbar. Taken largely from bootstrap */
 .navbar {
   position: absolute;
+  text-transform: uppercase;
 /*  min-height: 50px; */
   bottom: 0;
+  left: 0;
   width: 100%;
 /*  margin-bottom: 20px; */
  /* border: 1px solid transparent;*/
@@ -555,35 +557,6 @@ margin on the iframe, cause it breaks stuff. */
  /* border-radius: 0; */
 }
 
-.navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-    
-  margin: 0; /*mmi*/
-  font-size: 5rem;
-  letter-spacing: 0; 
-  font-weight: 100;
-  font-family: Helvetica, sans-serif;
-  color: #FEA03C; /*mmi*/
-    
-  -webkit-animation: fade-in-down 0.6s;
-  animation: fade-in-down 0.6s;
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.navbar-brand:hover,
-.navbar-brand:focus {
-  text-decoration: none;
-}
-
-.navbar-brand > img {
-  display: block;
-}
-
 /*min-width 768px*/
 .navbar > .container .navbar-brand,
 .navbar > .container-fluid .navbar-brand {
@@ -631,21 +604,22 @@ margin on the iframe, cause it breaks stuff. */
 
 /*min-width 768px*/
 .navbar-nav > li {
-  margin: 0.1em 1em;
+  margin: 0.1rem 2.8rem;
   float: left;
 }
 
 .navbar-nav > li > a {
   font-family: Helvetica, sans-serif;
   text-decoration: none;
+  font-size: 1.5rem;
   /*
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;*/
 
   /*min-width 768px*/
-  padding-top: 15px;
-  padding-bottom: 15px;
+  /*padding-top: 15px;
+  padding-bottom: 15px;*/
 }
 
 .navbar-text {
@@ -746,7 +720,7 @@ margin on the iframe, cause it breaks stuff. */
     display: table;
     width: 100%; 
     height: 100%;
-    margin-bottom: 5rem;
+    margin-bottom: 5rem; 
     text-align: center;
     background: #222 no-repeat center center;
     background-size: cover;
@@ -754,10 +728,10 @@ margin on the iframe, cause it breaks stuff. */
     overflow: hidden;
 }
 
-.main-header .inner {
-  /*  width: 100%;  mmi*/
+.main-header-content {
+    width: 90%;  /*mmi*/
     position: absolute; /*mmi*/
-    bottom: 20px; /*mmi*/
+    bottom: 0; /*mmi*/
     left: 2rem; /*mmi*/
 }
 
@@ -883,26 +857,28 @@ margin on the iframe, cause it breaks stuff. */
 }
 
 .subscribe-button {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     display: inline-block;
     float: right;
-    height: 38px;
+ /*   height: 38px; */
     padding: 0 20px;
-    border: transparent 1px solid;
-    color: #9EABB3;
+    color: #a8a8a8;
     text-align: center;
-    font-size: 12px;
+    font-size: 1.5rem;
+    font-family: Helvetica, san-serif;
     text-transform: uppercase;
     line-height: 35px;
     white-space: nowrap;
-    border-radius: 3px;
-    background: rgba(0,0,0,0.1);
-    transition: all ease 0.3s;
+    background: transparent;
 }
+
+.subscribe-button:hover,
+.subscribe-button:focus {
+    color: #fea03c;
+    text-decoration: none;
+}
+
 .subscribe-button:before {
-    font-size: 9px;
+    font-size: 11px;
     margin-right: 6px;
 }
 
@@ -946,20 +922,34 @@ margin on the iframe, cause it breaks stuff. */
 }
 
 /* Add a border to the buttons on hover */
-.back-button:hover,
-.subscribe-button:hover {
-    border-color: #bfc8cd;
-    color: #9EABB3;
+.back-button:hover {
+    border-color: #fea03c;
+    color: #fea03c;
+}
+
+.main-header-content > a {
+    text-decoration: none;
 }
 
 /* The details of your blog. Defined in ghost/settings/ */
 .page-title {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    
     margin: 0; /*mmi*/
     font-size: 5rem;
     letter-spacing: 0; 
     font-weight: 100;
     font-family: Helvetica, sans-serif;
     color: #FEA03C; /*mmi*/
+    
+    -webkit-animation: fade-in-down 0.6s;
+    animation: fade-in-down 0.6s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
 }
 
 .page-description {
@@ -970,6 +960,7 @@ margin on the iframe, cause it breaks stuff. */
     font-family: "Merriweather", serif;
     letter-spacing: 0.01rem;
     color: rgba(255,255,255,0.8);
+    float: right;
 }
 
 .no-cover.main-header {
@@ -1662,7 +1653,7 @@ body:not(.post-template) .post-title {
     /*mmi*/
     .main-cover {
         min-width: 900px;
-        bottom: -50px;
+        bottom: -20px;
         width: 900px;
     }
 
@@ -1773,13 +1764,13 @@ body:not(.post-template) .post-title {
 @media only screen and (max-width: 500px) {
 
     .main-header {
-        margin-bottom: 15px;
+        margin-bottom: 15px; 
         height: 40%;
     }
     
     /*mmi*/
     .main-cover {
-        bottom: 5px;
+        bottom: 25px;
         width: 500px;
         min-width: 500px;
     }
