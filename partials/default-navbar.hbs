@@ -1,0 +1,40 @@
+   
+
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <a class="navbar-brand" href="#"><h1 class="page-title">{{@blog.title}}</h1></a>
+            <h2 class="page-description">{{@blog.description}}</h2>
+        </div>
+    </div>
+
+
+     <a class="navbar-brand" href="#"></a>
+     <nav class="navbar navbar-default navbar-static-top clearfix" role="navigation">
+      <div class="container">
+        <div class="navbar-header clearfix">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse clearfix">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">HOME</a></li>
+            <li><a href="#me">ME</a></li>
+            <li><a href="#contact">CODE</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+    <nav class="main-nav overlay clearfix">
+        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+    </nav>

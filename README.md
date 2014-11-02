@@ -1,11 +1,17 @@
-# Casper
+# Sunset theme
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/).
+Sunset is designed to have a large cover photo that can be cropped down to the
+lower-left corner. In this way, different screen sizes are supported through
+cropping the image rather than resizing it, within limits.
 
-To download, visit the [releases](https://github.com/TryGhost/Casper/releases) page.
+If no logo is defined, the blog title will act like the logo and will disappear
+from the places would have appeared in Casper.
+
+Forked from [Casper](https://github.com/TryGhost/Casper/)
 
 ## Copyright & License
 
+Copyright (c) 2014 Marcus Ulrich - Released under the MIT License.
 Copyright (c) 2013-2014 Ghost Foundation - Released under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
