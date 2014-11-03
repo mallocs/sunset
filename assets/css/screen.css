@@ -731,8 +731,8 @@ margin on the iframe, cause it breaks stuff. */
 .main-header-content {
     width: 90%;  /*mmi*/
     position: absolute; /*mmi*/
-    bottom: 0; /*mmi*/
-    left: 2rem; /*mmi*/
+    bottom: 4.5rem; /*mmi*/
+    left: 4.1rem; /*mmi*/
 }
 
 /*mmi*/
@@ -934,8 +934,8 @@ margin on the iframe, cause it breaks stuff. */
 /* The details of your blog. Defined in ghost/settings/ */
 .page-title {
     float: left;
-    height: 50px;
-    padding: 15px 15px;
+ /*   height: 50px; */
+ /*padding: 15px 15px; */
     font-size: 18px;
     line-height: 20px;
     
@@ -1813,7 +1813,12 @@ body:not(.post-template) .post-title {
         color: #2e2e2e;
         background: #ebeef0;
     }
-
+    
+    /*TODO make icon appear with no text for mobile*/
+    .subscribe-button {
+        display: none;
+    }
+    
     .back-button {
         padding: 0 15px 0 10px;
     }
@@ -1882,10 +1887,11 @@ body:not(.post-template) .post-title {
         margin: 0 0 2.5rem 0;
     }
 
+    /*mmi
     .page-title {
         font-size: 3rem;
     }
-
+    */
     .post-excerpt p {
         font-size: 0.85em;
     }
