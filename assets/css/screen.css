@@ -477,12 +477,14 @@ margin on the iframe, cause it breaks stuff. */
 
 /* MMI navbar. Taken largely from bootstrap */
 .navbar {
-  position: absolute;
+  position: relative;
   text-transform: uppercase;
+  z-index: 1000;
 /*  min-height: 50px; */
-  bottom: 0;
   left: 0;
   width: 100%;
+  height: 3.5rem;
+
 /*  margin-bottom: 20px; */
  /* border: 1px solid transparent;*/
   /*min-width 768px*/
@@ -539,8 +541,14 @@ margin on the iframe, cause it breaks stuff. */
   margin-left: 0;
 }
 
+.navbar-static-bottom {
+  bottom: 3.5rem;
+  top: auto;
+}
+
 .navbar-static-top {
-  z-index: 1000;
+  top: 0;
+  bottom: auto;
  /* border-width: 0 0 1px; */
   /*min-width 768px*/
  /* border-radius: 0; */
@@ -604,7 +612,7 @@ margin on the iframe, cause it breaks stuff. */
 
 /*min-width 768px*/
 .navbar-nav > li {
-  margin: 0.1rem 2.8rem;
+  margin: 0.1rem 3.1rem;
   float: left;
 }
 
@@ -720,11 +728,10 @@ margin on the iframe, cause it breaks stuff. */
     display: table;
     width: 100%; 
     height: 100%;
-    margin-bottom: 5rem; 
+/*    margin-bottom: 5rem; */
     text-align: center;
     background: #222 no-repeat center center;
     background-size: cover;
-    background-position: bottom left; /*mmi*/
     overflow: hidden;
 }
 
@@ -1082,6 +1089,7 @@ body:not(.post-template) .post-title {
 .post-meta a {
     color: #9EABB3;
     text-decoration: none;
+    float: right;
 }
 
 .post-meta a:hover {
@@ -1168,6 +1176,8 @@ body:not(.post-template) .post-title {
    imperfections with browser width % calculations and rounding */
 .post-template .content {
     overflow: hidden;
+    margin-top: 3rem; /*mmi*/
+
 }
 
 /* Tweak the .post wrapper style */
@@ -1197,6 +1207,22 @@ body:not(.post-template) .post-title {
     width: 126%;
     max-width: none;
     margin: 0 -13%;
+}
+
+/*mmi slideshow*/
+.post-content .mmi-slideshow .full-img {
+    width: auto;
+    margin: 0;
+}
+
+.mmi-slideshow li {
+    margin: auto 0;
+}
+
+.mmi-slideshow li img {
+    padding: 0;
+    max-height: 530px;
+    width: 710px;
 }
 
 /* The author credit area after the post */
@@ -1241,12 +1267,15 @@ body:not(.post-template) .post-title {
     margin-right: 180px;
 }
 
+.author > p > a, /*mmi*/
 .post-footer h4 a {
-    color: #2e2e2e;
+    color: #a8a8a8;
     text-decoration: none;
 }
 
+.author > p > a:hover, /*mmi*/
 .post-footer h4 a:hover {
+    color: #fea03c;
     text-decoration: underline;
 }
 
@@ -1652,9 +1681,9 @@ body:not(.post-template) .post-title {
     
     /*mmi*/
     .main-cover {
-        min-width: 900px;
+/*        min-width: 900px;
         bottom: -20px;
-        width: 900px;
+        width: 900px; */
     }
 
     .scroll-down,
@@ -1764,15 +1793,15 @@ body:not(.post-template) .post-title {
 @media only screen and (max-width: 500px) {
 
     .main-header {
-        margin-bottom: 15px; 
+   /*     margin-bottom: 15px; */
         height: 40%;
     }
     
     /*mmi*/
     .main-cover {
-        bottom: 25px;
+ /*       bottom: 25px;
         width: 500px;
-        min-width: 500px;
+        min-width: 500px; */
     }
 
     .no-cover.main-header {

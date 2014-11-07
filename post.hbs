@@ -5,14 +5,9 @@
 
 {{! Everything inside the #post tags pulls data from the post }}
 {{#post}}
-
+{{> default-navbar}}
 <header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
-    <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
-        <a class="back-button icon-arrow-left" href="{{@blog.url}}">Home</a>
-        <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a>
-    </nav>
 </header>
-
 <main class="content" role="main">
 
     <article class="{{post_class}}">
@@ -20,11 +15,17 @@
         <header class="post-header">
             <h1 class="post-title">{{title}}</h1>
             <section class="post-meta">
-                <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix=" on "}}
+                <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix="  "}}
             </section>
         </header>
 
         <section class="post-content">
+
+        {{! Add slideshow if it's tagged }}
+        {{#has tag="slideshow"}}
+          {{slideshow id}}
+        {{/has}}
+
             {{content}}
         </section>
 

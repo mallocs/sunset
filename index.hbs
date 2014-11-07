@@ -7,9 +7,14 @@
     <img class="main-cover" src="{{@blog.cover}}">
     {{/if}}
 
-    {{> default-navbar}}
+     <div class="main-header-content">
+       <a href="/index.html"><h1 class="page-title">{{@blog.title}}</h1></a>
+       <h2 class="page-description">{{@blog.description}}</h2>
+     </div>
+
     <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
+    {{> default-navbar}}
 
 {{! The main content area on the homepage }}
 <main id="content" class="content" role="main">

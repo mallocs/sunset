@@ -18,6 +18,13 @@
 
     {{! Ghost outputs important style and meta data with this tag }}
     {{ghost_head}}
+
+    {{! Slideshow CSS }}
+    {{#post}}
+      {{#has tag="slideshow"}}
+      <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
+      {{/has}}
+    {{/post}}
 </head>
 <body class="{{body_class}}">
 
@@ -34,5 +41,17 @@
 
     {{> default-scripts}}
 
+    {{! Slideshow JS }}
+    {{#post}}
+      {{#has tag="slideshow"}}
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var ss = $(".mmi-slideshow").slideshow();
+        });
+    </script>
+      {{/has}}
+    {{/post}}
 </body>
 </html>
