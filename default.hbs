@@ -25,6 +25,10 @@
       <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
       {{/has}}
     {{/post}}
+    {{#is "index"}}
+      <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
+    {{/is}}    
+
 </head>
 <body class="{{body_class}}">
 
@@ -43,15 +47,28 @@
 
     {{! Slideshow JS }}
     {{#post}}
-      {{#has tag="slideshow"}}
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
-    <script type="text/javascript">
+        {{#has tag="slideshow"}}
+        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
+        <script type="text/javascript">
         $(function() {
             var ss = $(".mmi-slideshow").slideshow();
         });
-    </script>
-      {{/has}}
+        </script>
+        {{/has}}    
     {{/post}}
+
+    {{#is "index"}}
+        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
+        <script type="text/javascript">
+        $(function() {
+            var ss = $(".mmi-slideshow").slideshow();
+        });
+        </script>
+    {{/is}}    
+        <script type="text/javascript">
+            $.fn.title_sign("{{@blog.title}}");
+        </script>
 </body>
 </html>

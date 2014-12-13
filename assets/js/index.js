@@ -95,4 +95,19 @@
         });
 
     };
+    
+    //This just adds the domain to the blog title
+    $.fn.title_sign = function(title) {
+        var hostnameParts = window.location.hostname.split(".");
+        var sig = "";
+        if (hostnameParts.length === 1 && window.location.host.split(":").length === 2) {
+            sig = ":" + window.location.host.split(":")[1];
+        } else if (hostnameParts.length === 2) {
+            sig = "." + hostnameParts[1];
+        } else if (hostnameParts.length === 3) {
+            sig = "." + hostnameParts[2];
+        }
+        $("title").html( $("title").html().replace(title, title + sig) );
+        $(".page-title").append( $("<span>" + sig + "</span>").addClass("page-title-ending") );
+    };
 })(jQuery, 'smartresize');

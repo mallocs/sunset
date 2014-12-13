@@ -10,11 +10,11 @@ registerHelper = function (){
         var out = '<div class="mmi-slideshow" data-transition="scroll" data-loop="true" data-captions="false" data-dark="true">' 
                 + '<ul class="carousel">\n';
             out += '<li class="slide">\n';
-            out += '<img src="' + urlPath + dirList[0] + '" data-credit="mmi">\n';
+            out += '<img src="' + urlPath + dirList[0] + '">\n';
             out += '</li>\n';
         for(var i=1, l=dirList.length; i<l; i++) {
             out += '<li class="slide">\n';
-            out += '<img data-src="' + urlPath + dirList[i] + '" data-credit="mmi">\n';
+            out += '<img data-src="' + urlPath + dirList[i] + '">\n';
             out += '</li>\n';
         }
         return new hbs.SafeString(out + '</ul>\n</div>\n');
