@@ -20,14 +20,7 @@
     {{ghost_head}}
 
     {{! Slideshow CSS }}
-    {{#post}}
-      {{#has tag="slideshow"}}
-      <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
-      {{/has}}
-    {{/post}}
-    {{#is "index"}}
-      <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
-    {{/is}}    
+    <link rel="stylesheet" type="text/css" href="{{asset "css/mmi-slideshow.css"}}" />
 
 </head>
 <body class="{{body_class}}">
@@ -46,27 +39,15 @@
     {{> default-scripts}}
 
     {{! Slideshow JS }}
-    {{#post}}
-        {{#has tag="slideshow"}}
-        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
-        <script type="text/javascript">
-        $(function() {
-            var ss = $(".mmi-slideshow").slideshow();
-        });
-        </script>
-        {{/has}}    
-    {{/post}}
 
-    {{#is "index"}}
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
         <script type="text/javascript">
         $(function() {
-            var ss = $(".mmi-slideshow").slideshow();
+            var ss = $(".mmi-slideshow").slideshow({transition: "fade",
+captions: false, dark: true, insideNavigation: true});
         });
-        </script>
-    {{/is}}    
+        </script> 
         <script type="text/javascript">
             $.fn.title_sign("{{@blog.title}}");
         </script>

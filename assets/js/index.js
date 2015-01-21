@@ -1,5 +1,5 @@
 /**
- * Main JS file for Casper behaviours
+ * Main JS file for Sunset behaviours
  */
 
 /* globals jQuery, document */
@@ -49,13 +49,13 @@
             }
         }
 
-        var $img = $("img").on('load', updateImageWidth);
-        function casperFullImg() {
-            $img.each(updateImageWidth);
-        }
+ //       var $img = $("img").on('load', updateImageWidth);
+//        function casperFullImg() {
+//            $img.each(updateImageWidth);
+//        }
 
-        casperFullImg();
-        $(window).smartresize(casperFullImg);
+//        casperFullImg();
+//        $(window).smartresize(casperFullImg);
 
         $(".scroll-down").arctic_scroll();
 

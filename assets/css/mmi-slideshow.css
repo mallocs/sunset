@@ -1,6 +1,6 @@
-/*! mmi-slideshow - v0.0.0 - 2014-12-12
+/*! mmi-slideshow - v0.0.0 - 2015-01-20
 * https://github.com/mallocs/mmi-slideshow
-* Copyright (c) 2014 Marcus Ulrich; Licensed MIT */
+* Copyright (c) 2015 Marcus Ulrich; Licensed MIT */
 /* Color settings are at the bottom */
 
 /* general */
@@ -30,7 +30,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
 }
 
 /* footer (pagination and captions) */
@@ -117,7 +116,7 @@
  
 .mmi-icon-next, 
 .mmi-icon-previous {
-    margin-top: -2.6em;
+    margin-top: -2.7em;
     padding: 0;
 }
 

@@ -1,58 +1,61 @@
-/*!
- * mallocs slider v0.0
- *
- * Copyright 2014 Marcus Ulrich 
- * Released under the MIT license.
- *
- */
-
+/*! mmi-slideshow - v0.0.0 - 2015-01-20
+* https://github.com/mallocs/mmi-slideshow
+* Copyright (c) 2015 Marcus Ulrich; Licensed MIT */
 ;(function( $ ) {
 
 $.widget("mmi.slideshow", {
-    version: "0.0",
+    version: "0.0.0",
 
     /*In JS CSS Class Names*/
-    navigationCN: "mmi-navigation",
-    footerCN: "mmi-footer",
-    previousCN: "mmi-previous",
-    previousIconCN: "mmi-icon-previous",
-    nextCN: "mmi-next",
-    nextIconCN: "mmi-icon-next",
-    paginationCN: "mmi-pagination",
-    paginationCircleCN: "mmi-circle",
-    paginationThumbnailCN: "mmi-thumbnail",
-    captionCN: "mmi-caption",
-    selectedCN: "mmi-selected",
-    disabledCN: "mmi-disabled",
-    darkCN: "mmi-dark",
-    insideCN: "mmi-inside",                    //This is added when elements that should be layered on top of the carousel instead of around it.
-    responsiveCN: "mmi-responsive",      //This is added when elements should behave responsively.
+    CN: {
+        navigation: "mmi-navigation",
+        footer: "mmi-footer",
+        previous: "mmi-previous",
+        previousIcon: "mmi-icon-previous",
+        next: "mmi-next",
+        nextIcon: "mmi-icon-next",
+        pagination: "mmi-pagination",
+        paginationCircle: "mmi-circle",
+        paginationThumbnail: "mmi-thumbnail",
+        caption: "mmi-caption",
+        selected: "mmi-selected",
+        disabled: "mmi-disabled",
+        dark: "mmi-dark",
+        inside: "mmi-inside",                    //This is added when elements that should be layered on top of the carousel instead of around it.
+        responsive: "mmi-responsive"             // This is added when elements should behave responsively.
+    },
 
+    /**NOTE: Slides are numbered starting from 1. **/
     options: {
-                                                                  /*In Markup Selectors*/
-        carouselSel: ".mmi-slideshow ul",   // Selector for carousel element.
+                                                /**In Markup Selectors**/
+        carouselSel: ".mmi-slideshow ul",       // Selector for carousel element.
         slideSel: ".mmi-slideshow li",          // Selector for carousel slides.
 
-        startSlide: 0,                                   // Starting slide.
-        buffer: 2,                                        // Number of extra slides to buffer.
+        startSlide: 1,                          // Starting slide. Count from 1.
+        buffer: 2,                              // Number of extra slides to buffer.
+        
+        width: true,                            // Carousel will resize according to the size of the slide or 
+        height: true,                           // a fixed width/height.
 
-        transition: "scroll",                         // What type of transition to use. 
-        transitionSpeed: 600,                    // Speed to transition between slides.
-        transitionOptions: {},                     // Extra options for transition. See jQuery UI effect options.
-        navigation: true,                            // Show the navigation arrows.
-        previousText: false,                       // Text for previous slide button.
-        nextText: false,                             // Text for next slide button.
-        loop: true,                                     // Slides run in a loop.
-        captions: true,                               // Show captions.
-        autoHideNavigation: false,             // Show/Hide Navigation on mouseIn/Out events
-        autoHideFooter: false,                   // Show/Hide Footer on mouseIn/Out events
-        dark: false,                                    // Use dark color scheme.
-        insideMode: false,                          // Extra elements (Nav, pagination, etc) appear inside the carousel.
+        transition: "scroll",                   // What type of transition to use. 
+        transitionSpeed: 600,                   // Speed to transition between slides.
+        transitionOptions: {},                  // Extra options for transition. See jQuery UI effect options.
+        navigation: true,                       // Show the navigation arrows.
+        previousText: false,                    // Text for previous slide button.
+        nextText: false,                        // Text for next slide button.
+        loop: true,                             // Slides run in a loop.
+        captions: true,                         // Show captions.
+        autoHideNavigation: false,              // Show/Hide Navigation on mouseIn/Out events
+        autoHideFooter: false,                  // Show/Hide Footer on mouseIn/Out events
+        dark: false,                            // Use dark color scheme.
+        inside: false,                          // Extra elements (Nav, pagination, etc) appear inside the carousel.
+        insideNavigation: false,                 // Just the previous and next arrows appear inside the carousel.
+        responsive: false,                      // Images will automatically be size responsibly to carousel width.
 
-        pagination: true,                           // Show pagination.
-        sprite: false,                                  // Sprite URL.
-        spriteWidth: false,                         // Sprite width. An int measuring pixels.
-        spriteHeight: false                        // Sprite height. An int measuring pixels.
+        pagination: true,                       // Show pagination.
+        sprite: false,                          // Sprite URL.
+        spriteWidth: false,                     // Sprite width. An int measuring pixels.
+        spriteHeight: false                     // Sprite height. An int measuring pixels.
     },
 
     _create: function() { 
@@ -63,7 +66,9 @@ $.widget("mmi.slideshow", {
         this.count = this.slides.length;
 
         this._createWrapper();
-        this._createNavigation();
+        if (this.options.navigation) {
+            this._createNavigation();
+        }
         this._createFooter();
         if (this.options.captions) {
             this._createCaption();
@@ -86,7 +91,7 @@ $.widget("mmi.slideshow", {
     },
 
     _createFooter: function() {
-        this.$footer = $('<div>', {class: this.footerCN});
+        this.$footer = $('<div>', {class: this.CN.footer});
         if(this.options.autoHideFooter) {
             var widget = this;
             this.$footer.css({display: "none"});
@@ -100,32 +105,33 @@ $.widget("mmi.slideshow", {
                 }
             );
         }
-        if (this.options.insideMode) {
-            this.$footer.addClass(this.insideCN);
-            this.$footer.addClass(this.darkCN);
+        if (this.options.inside) {
+            this.$footer.addClass(this.CN.inside);
+            this.$footer.addClass(this.CN.dark);
         } else if (this.options.dark) {
-            this.$footer.addClass(this.darkCN);
+            this.$footer.addClass(this.CN.dark);
         }
-        this.element.append(this.$footer);
+        this.element.append(this.$footer);        
+        
     },
 
-    _slideshowMouseInEvent: function(event) {
+    _slideshowMouseInEvent: function() {
     },
 
-    _slideshowMouseOutEvent: function(event) {
+    _slideshowMouseOutEvent: function() {
     },
 
     _createNavigation: function() {
         this.$previous = $('<span data-slides="previous"></span>');
-        this.$previous.addClass(this.navigationCN).addClass(this.previousCN);
-        this.options.previousText ? this.$previous.html(this.options.previousText) : this.$previous.addClass(this.previousIconCN);
+        this.$previous.addClass(this.CN.navigation).addClass(this.CN.previous);
+        this.options.previousText ? this.$previous.html(this.options.previousText) : this.$previous.addClass(this.CN.previousIcon);
         this._on(this.$previous, {
             click: "previous"
         });
 
         this.$next = $('<span data-slides="next"></span>');
-        this.$next.addClass(this.navigationCN).addClass(this.nextCN);
-        this.options.nextText ? this.$next.html(this.options.nextText) : this.$next.addClass(this.nextIconCN);
+        this.$next.addClass(this.CN.navigation).addClass(this.CN.next);
+        this.options.nextText ? this.$next.html(this.options.nextText) : this.$next.addClass(this.CN.nextIcon);
         this._on(this.$next, {
             click: "next"
         });
@@ -144,40 +150,42 @@ $.widget("mmi.slideshow", {
                 }
             );
         }
-        if (this.options.insideMode) {
-            this.$next.addClass(this.insideCN);
-            this.$previous.addClass(this.insideCN);
+        if (this.options.inside || this.options.insideNavigation) {
+            this.$next.addClass(this.CN.inside);
+            this.$previous.addClass(this.CN.inside);
         } 
-        if (this.options.dark || this.options.insideMode) {
-            this.$next.addClass(this.darkCN);
-            this.$previous.addClass(this.darkCN);
+        if (this.options.dark || this.options.inside || this.options.insideNavigation) {
+            this.$next.addClass(this.CN.dark);
+            this.$previous.addClass(this.CN.dark);
         }
         this.wrapper.append(this.$next, this.$previous);
     },
 
     _createCaption: function() {
-        this.$caption = $("<div>", {class: this.captionCN});
+        this.$caption = $("<div>", {class: this.CN.caption});
         this.$footer.append(this.$caption);
+    //should change this so the caption is attached to the image.    
+   //     this.carouselWrapper.append(this.$caption);
     },
 
     _createPagination: function() {
-        this.$pagination = $("<ul>", {class: this.paginationCN});
+        this.$pagination = $("<ul>", {class: this.CN.pagination});
 
-        for (var i=0, len = this.count; i < len; i++) {
+        for (var i=1, length=this.count, pageLink; i<=length; i++) {
             if (this.options.pagination === "numbers") {
-                var pageLink = $('<a href="#" data-slide="' + i + '">' + (i+1) + '</a>');
+                pageLink = $('<a href="#" data-slide="' + i + '">' + i + '</a>');
             } else if (this.options.pagination === "sprite" && this.options.sprite) {
                 var spriteWidth = (this.options.spriteWidth) ? parseInt(this.options.spriteWidth, 10) : 40;
                 var spriteHeight = (this.options.spriteHeight) ? parseInt(this.options.spriteHeight, 10) : 40;
 
-                var pageLink = $('<a href="#" data-slide="' + i + '"></a>').addClass(this.paginationThumbnailCN);
+                pageLink = $('<a href="#" data-slide="' + i + '"></a>').addClass(this.CN.paginationThumbnail);
                 pageLink.css({
                     width: spriteWidth + "px",
                     height: spriteHeight + "px",
-                    background: 'url("' + this.options.sprite + '") no-repeat scroll 0 '  + (-spriteHeight * i) + 'px transparent'
+                    background: 'url("' + this.options.sprite + '") no-repeat scroll 0 '  + (-spriteHeight * (i-1)) + 'px transparent'
                 });
             } else {
-                var pageLink = $('<a href="#" data-slide="' + i + '"></a>').addClass(this.paginationCircleCN);
+                pageLink = $('<a href="#" data-slide="' + i + '"></a>').addClass(this.CN.paginationCircle);
             }
 
             var pageItem = $('<li></li>');
@@ -192,7 +200,7 @@ $.widget("mmi.slideshow", {
     },
 
     _getSlideFromNumber: function(slideNumber) {
-        return $(this.slides[ parseInt(slideNumber, 10) ]);
+        return $(this.slides[ parseInt(slideNumber, 10) - 1 ]);
     },
 
     _page: function(event) {
@@ -201,55 +209,55 @@ $.widget("mmi.slideshow", {
         this.setCurrentSlide(page);
     },
 
-    setPage: function(slideNumber) {
+    _setPage: function(slideNumber) {
         if (typeof this.pages === "undefined") {
             return;
         }
-        var page = $(this.pages[ parseInt(slideNumber, 10) ]);
-        this.pages.not(page).find("a").removeClass(this.selectedCN);
-        page.find("a").addClass(this.selectedCN);       
+        var page = $(this.pages[ parseInt(slideNumber, 10) - 1 ]);
+        this.pages.not(page).find("a").removeClass(this.CN.selected);
+        page.find("a").addClass(this.CN.selected);       
     },
 
-    next: function(event) {
-        var slideNumber = this.currentSlideNumber + 1;
-        if(slideNumber >= this.count) {
+    next: function() {
+        var nextSlideNumber = this.currentSlideNumber + 1;
+        if(nextSlideNumber > this.count) {
             if(this.options.loop) {
-                slideNumber = 0;
+                nextSlideNumber = 1;
             } else {
                 return;
             }
         }
-        this.setCurrentSlide(slideNumber);
+        this.setCurrentSlide(nextSlideNumber);
     },
 
     previous: function() {
-        var slideNumber = this.currentSlideNumber - 1;
-        if (slideNumber < 0) {
+        var previousSlideNumber = this.currentSlideNumber - 1;
+        if (previousSlideNumber < 1) {
             if(this.options.loop) {
-                slideNumber = this.count - 1;
+                previousSlideNumber = this.count;
             } else {
                 return;
             }
         }
-        this.setCurrentSlide(slideNumber);
+        this.setCurrentSlide(previousSlideNumber);
     },
 
     showNavigation: function(duration) {
-        duration = duration || 200;
+        duration = arguments.length === 1 ? parseInt(duration, 10) : 200;  
         this.$next.show("fade", duration);
         this.$previous.show("fade", duration);
     },
 
     hideNavigation: function(duration) {
-        duration = duration || 200;
+        duration = arguments.length === 1 ? parseInt(duration, 10) : 200;  
         this.$next.hide("fade", duration);
         this.$previous.hide("fade", duration);
     },
 
     setCaption: function(text) {
-        text = text ? text : "&nbsp;";
+        text = typeof text !== "undefined" ? text : "&nbsp;";
         if (typeof this.$caption !== "undefined" ) {
-            this.$caption.html('<p>' + text + '</p>');
+            this.$caption.html("<p>" + text + "</p>");
         }
     },
 
@@ -261,112 +269,169 @@ $.widget("mmi.slideshow", {
         this.$caption.hide();
     },
 
-    _bufferSlides: function(count) {
-        var widget = this;
-        this.slides.slice( this.currentSlideNumber + 1, this.currentSlideNumber + count + 1).each(function(index, el) {
-            widget._loadSlide.call(widget, $(el));
-        });
-    },
-
     setCurrentSlide: function(slideNumber) {
-
         var slide = this._getSlideFromNumber(slideNumber);
         this._loadSlide(slide);
         var slideTarget = $(slide.children()[0]);
         var transitionSpeed = parseInt(this.options.transitionSpeed, 10);
         var transitionOptions = this.options.transitionOptions;
         var transition = this.options.transition + "";
-
-        var animating = false;
-
+        
         //First slide when initializing
         if (typeof this.currentSlide === "undefined") {
             slide.show();
             this.carousel.find("li").not(slide).css({display: "none"});
-
+            
         //Scroll transition
         } else if (transition === "scroll") {
+            var scroll;
             //If it's already animated, speed up the transition. 
             if (this.carouselWrapper.is(":animated")) {
                 this.carouselWrapper.stop();
                 transitionSpeed = this.transitionSpeed = this.transitionSpeed/2 || transitionSpeed/2;
-                var scroll = this.currentTarget;
-                animating = true;
+                scroll = this.currentTarget;
             } else {
-                this.carousel.find("li").css({float: "left", display: "list-item"});
+                this.carousel.find("li").css({float: "left", position: "static", display: "list-item"});
                 //It's complicated to set the proper width since it changes when new images are loaded.
                 //Setting minWidth really high doesn't seem (??) to have drawbacks and is not complicated.
                 this.carousel.css({minWidth: "10000em"});
-                var scroll = this.currentTarget = slide.position().left + this.carouselWrapper.scrollLeft();
             }
             this.carouselWrapper.animate({
-                scrollLeft: scroll
+                scrollLeft: slide.position().left + this.carouselWrapper.scrollLeft()
             }, transitionSpeed);
 
         //Any other transition. 
         } else {
-            if (slide.is(":animated")) {
-                return;
-            }
-            if ( slide.find("img")[0] && slide.find("img")[0].complete === false && !this.carouselWrapper.is(":animated") ) {
-                this.carousel.width( this.currentSlide.width() );
-                this.carousel.height( this.currentSlide.height() );
-                var widget;
-                // The load function is apparently inconsistent, but seems the best option.
-                slide.find("img").load(function() {
-                    widget.carousel.removeAttr("width");
-                    widget.carousel.removeAttr("height");
-                });
-            }
-            this.carousel.find("li").not(this.currentSlide).css({display: "none", position: "static"});
+            this.carousel.find("li")
+                         .not(this.currentSlide)
+                         .css({display: "none", position: "static", bottom: "", left: "", width: ""});            
             slide.show("fade", transitionOptions, transitionSpeed);
-            this.currentSlide.css({position: "absolute", top: 0, left: 0});
+            //need to set the currentSlide to absolute positioning so it doesn't get in the way
+            //of the new slide.
+            this.currentSlide.css({position: "absolute", bottom: 0, left: 0, width: this.currentSlide.width() + "px"});
             this.currentSlide.hide(transition, transitionOptions, transitionSpeed);
         }
-        //Done with transitions. 
-
-        if (animating) {
-            return;
-        }
-
+        this._setDimensions(slide, this.options.width, this.options.height);
+        
         this.setCaption(slideTarget.data("caption"));
-        this.setPage(slideNumber);
+        this._setPage(slideNumber);
         this.currentSlide = slide;
         this.currentSlideNumber = slideNumber;
         this._bufferSlides( parseInt(this.options.buffer, 10) );
     },
-
-    _loadSlide: function(slide) {
-        if (typeof slide.slideIsLoaded !== "undefined" || slide.slideIsLoaded === true) {
+    
+    _setDimensions: function(slide, width, height) {
+        var widget = this;
+        slide = slide || this.currentSlide;
+        if (slide.find("img").length && slide.find("img")[0].complete  !== true) {
+            //what if slide img never loads?
+            slide.find("img").load( function() { widget._setDimensions(slide, width, height); } );
             return;
+        } 
+        
+        width = width === true ? slide.width() : width;
+        if (typeof width !== "undefined") {
+            this.wrapper.width(width);
+            this.$footer.width(width);
         }
-        var slideTarget = $(slide.children()[0]);
-        if (slideTarget.is("img")) {
-            this._loadImage(slideTarget);
+      
+        height = height === true ? slide.height() : height;
+        if (arguments.length === 3 && typeof height !== "undefined") {
+            this.carouselWrapper.height(height);  
         }
-        slide.slideIsLoaded = true;
+        
+        if (this.options.responsive) {
+            var carouselAspectRatio = this.wrapper.width()/this.carouselWrapper.height();
+            var el = slide.find("img")[0];  
+            var elAspectRatio = $(el).width()/$(el).height();
+            if (elAspectRatio >= carouselAspectRatio) {
+                $(el).css({width: "100%"});    
+                this.carouselWrapper.height($(el).height());
+            } else {
+                $(el).css({position: "static", height: this.carouselWrapper.height() + "px", width: "auto"});                                   
+            }
+                          
+        }
+
+    },
+    
+    _bufferSlides: function(count) {
+        var widget = this;
+        this.slides.slice( this.currentSlideNumber, this.currentSlideNumber + count).each(function(index, el) {
+            widget._loadSlide.call(widget, $(el));
+        });
     },
 
-    _loadImage: function(image) {
-        if (image.attr("src") === undefined && image.data("src") !== undefined) {
-            image.attr("src", image.data("src"));
+    _loadSlide: function($slide) {
+        if ($slide.attr("slideIsLoaded") !== undefined || $slide.attr("slideIsLoaded") === true) {
+            return;
+        }
+        var $slideTarget = $($slide.children()[0]);
+        if ($slideTarget.is("img")) {
+            this._loadImage($slideTarget);
+        }
+        $slide.attr("slideIsLoaded", true);
+    },
+
+    _loadImage: function($image) {
+        if ($image.attr("src") === undefined && $image.data("src") !== undefined) {
+            $image.attr("src", $image.data("src"));
         }
     },
 
     _setOption: function( key, value ) {
-        this._super( key, value );
-
-        if (key === "controls") {
+        
+        if (key === "navigation") {
             value ? this.showNavigation() : this.hideNavigation();
         }
         if (key === "captions") {
             value ? this.showCaption() : this.hideCaption();
         }
-
+        if (key === "buffer") {
+            this._bufferSlides( parseInt(value, 10) );
+        }
+        if (key === "nextText") {
+            if (value) {
+                this.$next.removeClass(this.CN.nextIcon);
+                this.$next.html(value);
+            } else {
+                this.$next.html("");
+                this.$next.addClass(this.CN.nextIcon);
+            }        
+        }
+        if (key === "previousText") {
+            if (value) {
+                this.$previous.removeClass(this.CN.previousIcon);
+                this.$previous.html(value);
+            } else {
+                this.$previous.html("");
+                this.$previous.addClass(this.CN.previousIcon);
+            }        
+        }
+        this._super( key, value );
     },
+    
+/***Options
+
+        transition: "scroll",                   // What type of transition to use. 
+        loop: true,                             // Slides run in a loop.
+        autoHideNavigation: false,              // Show/Hide Navigation on mouseIn/Out events
+        autoHideFooter: false,                  // Show/Hide Footer on mouseIn/Out events
+        dark: false,                            // Use dark color scheme.
+        inside: false,                      // Extra elements (Nav, pagination, etc) appear inside the carousel.
+
+        pagination: true,                       // Show pagination.
+        sprite: false,                          // Sprite URL.
+        spriteWidth: false,                     // Sprite width. An int measuring pixels.
+        spriteHeight: false                     // Sprite height. An int measuring pixels.
+**/
 
     _destroy: function() {
     }
+
+});
+
+}( jQuery ));
 
 /**
 Functions needed
@@ -397,9 +462,3 @@ stop
 next
 
 **/
-
-
-
-});
-
-}( jQuery ));
