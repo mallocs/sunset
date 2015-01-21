@@ -7,8 +7,7 @@ registerHelper = function (){
         var dir = slideshows["rootDir"] + slideshows["articles"][articleId]["imgDir"];
         var urlPath = slideshows["urlPath"] + slideshows["articles"][articleId]["imgDir"];
         var dirList = fs.readdirSync(dir);
-        var out = '<div class="mmi-slideshow"  \
-data-responsive="true" data-width="100%" data-height="700px">' // data-transition="fade" data-loop="true" data-captions="false" data-dark="true">' 
+        var out = '<div class="mmi-slideshow">'
                 + '<ul class="carousel">\n';
             out += '<li class="slide">\n';
             out += '<img src="' + urlPath + dirList[0] + '">\n';
