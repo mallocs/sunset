@@ -475,249 +475,6 @@ margin on the iframe, cause it breaks stuff. */
    4. General - The main styles for the the theme
    ========================================================================== */
 
-/* MMI navbar. Taken largely from bootstrap */
-.navbar {
-  position: relative;
-  text-transform: uppercase;
-  z-index: 1000;
-/*  min-height: 50px; */
-  left: 0;
-  width: 100%;
-  height: 3.5rem;
-
-/*  margin-bottom: 20px; */
- /* border: 1px solid transparent;*/
-  /*min-width 768px*/
- /* border-radius: 4px; */
-}
-
-/*min-width 768px*/
-.navbar-header {
-    float: left;
-}
-
-.navbar-collapse {
-  padding-right: 15px;
-  padding-left: 15px;
-  overflow-x: visible;
-  -webkit-overflow-scrolling: touch;
-  border-top: 1px solid transparent;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
-  /*min-width 768px*/
-  width: auto;
-  border-top: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/*min-width 768px*/
-.navbar-collapse.collapse {
-  display: block !important;
-  height: auto !important;
-  padding-bottom: 0;
-  overflow: visible !important;
-  visibility: visible !important;
-}
-
-.navbar-collapse.in {
-  /*min-width 768px*/
-  overflow-y: visible;
-}
-
-.navbar-fixed-top .navbar-collapse {
-  max-height: 340px;
-  /*min-width 768px*/
-  padding-right: 0;
-  padding-left: 0;
-}
-
-.container > .navbar-header,
-.container-fluid > .navbar-header,
-.container > .navbar-collapse,
-.container-fluid > .navbar-collapse {
-  /*min-width 768px*/  
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.navbar-static-bottom {
-  bottom: 3.5rem;
-  top: auto;
-}
-
-.navbar-static-top {
-  top: 0;
-  bottom: auto;
- /* border-width: 0 0 1px; */
-  /*min-width 768px*/
- /* border-radius: 0; */
-}
-
-.navbar-fixed-top {
-  top: 0;
-  right: 0;
-  left: 0;
-/*  border-width: 0 0 1px; */
-  position: fixed;
-  z-index: 1030;
-  /*min-width 768px*/
- /* border-radius: 0; */
-}
-
-/*min-width 768px*/
-.navbar > .container .navbar-brand,
-.navbar > .container-fluid .navbar-brand {
-  margin-left: -15px;
-}
-
-.navbar-toggle {
-  position: relative;
-  float: right;
-  padding: 9px 10px;
-  margin-top: 8px;
-  margin-right: 15px;
-  margin-bottom: 8px;
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  /*min-width 768px*/
-  display: none;
-}
-
-.navbar-toggle:focus {
-  outline: 0;
-}
-
-.navbar-toggle .icon-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 1px;
-}
-
-.navbar-toggle .icon-bar + .icon-bar {
-  margin-top: 4px;
-}
-
-.navbar-nav {
-  list-style: none;
-  /*margin: 7.5px -15px;*/
-  /*min-width 768px*/
-  float: left;
-  margin: 0;
-  padding: 0;
-}
-
-/*min-width 768px*/
-.navbar-nav > li {
-  margin: 0.1rem 3.1rem;
-  float: left;
-}
-
-.navbar-nav > li > a {
-  font-family: Helvetica, sans-serif;
-  text-decoration: none;
-  font-size: 1.5rem;
-  /*
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;*/
-
-  /*min-width 768px*/
-  /*padding-top: 15px;
-  padding-bottom: 15px;*/
-}
-
-.navbar-text {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  /*min-width 768px*/
-  float: left;
-  margin-right: 15px;
-  margin-left: 15px;
-}
-
-/*min-width 768px*/
-.navbar-left {
-  float: left !important;
-}
-
-/*min-width 768px*/
-.navbar-right {
-  float: right !important;
-  margin-right: -15px;
-}
-
-/*min-width 768px*/
-.navbar-right ~ .navbar-right {
-  margin-right: 0;
-}
-
-.navbar-default {
-  background-color: #383838;
- /* border-color: #272727; */
-  border: none;
-}
-.navbar-default .navbar-brand {
-  color: #FEA03C;
-}
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #FEA03C;
-  background-color: transparent;
-}
-
-.navbar-default .navbar-text {
-  color: #a8a8a8;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: #a8a8a8;
-}
-
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default .navbar-nav > .disabled > a:hover,
-.navbar-default .navbar-nav > .disabled > a:focus {
-  color: #FEA03C;
-  background-color: transparent;
-}
-
-.navbar-default .navbar-nav > .active > a {
-  color: #ddd;
-  background-color: transparent;
-}
-
-.navbar-default .navbar-nav > .disabled > a {
-  color: #a8a8a8;
-  background-color: transparent;
-}
-
-.navbar-default .navbar-toggle {
-  border-color: #ddd;
-}
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #ddd;
-}
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #888;
-}
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-  border-color: #e7e7e7;
-}
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-  color: #555;
-  background-color: #e7e7e7;
-}
-
 /* Big cover image on the home page */
 .main-header {
     position: relative;
@@ -733,31 +490,18 @@ margin on the iframe, cause it breaks stuff. */
 .main-header-content {
     width: 90%;  /*mmi*/
     position: absolute; /*mmi*/
-    bottom: 0.4rem; /*mmi*/
+    bottom: 1rem; /*mmi*/
     left: 4.1rem; /*mmi*/
 }
 
 /*mmi*/
 .main-cover {
-    bottom: -60px;
+    bottom: -50px;
     left: 0;
     width: 100%;    
     min-width: 1300px; 
     position: absolute;
     overflow: hidden;
-}
-
-.main-nav {
-    position: relative;
-    /*
-    padding: 35px 40px;
-    margin: 0 0 30px 0;
-    mmi*/
-}
-
-.main-nav a {
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
 }
 
 /* Create a bouncing scroll-down arrow on homepage with cover image */
@@ -856,71 +600,6 @@ margin on the iframe, cause it breaks stuff. */
     font-size: 13px;
     line-height: 0;
     margin-right: 8px;
-}
-
-.subscribe-button {
-    display: inline-block;
-    float: right;
- /*   height: 38px; */
-    padding: 0 20px;
-    color: #a8a8a8;
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: Helvetica, san-serif;
-    text-transform: uppercase;
-    line-height: 35px;
-    white-space: nowrap;
-    background: transparent;
-}
-
-.subscribe-button:hover,
-.subscribe-button:focus {
-    color: #fea03c;
-    text-decoration: none;
-}
-
-.subscribe-button:before {
-    font-size: 11px;
-    margin-right: 6px;
-}
-
-/* Special styles when overlaid on an image*/
-.main-nav.overlay {
-    position: absolute;
- /*   top: 0; mmi*/
-    bottom: 3rem;
-    left: 0;
-    right: 3rem; /*mmi*/
- /*   height: 70px; mmi*/
-    border: none;
-    
-    /*mmi
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.2)), color-stop(100%,rgba(0,0,0,0)));
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%);
-    */
-}
-.no-cover .main-nav.overlay,
-.no-cover .back-button,
-.no-cover .subscribe-button {
-    background: none;
-}
-
-.main-nav.overlay a {
-    color: #fff;
-}
-
-.main-nav.overlay .back-button,
-.main-nav.overlay .subscribe-button {
-    border-color: rgba(255,255,255,0.6);
-}
-
-.main-nav.overlay a:hover {
-    color: #222;
-    border-color: #fff;
-    background: #fff;
-    transition: all 0.1s ease;
 }
 
 /* Add a border to the buttons on hover */
@@ -1304,82 +983,7 @@ body:not(.post-template) .post-title {
     color: #50585D;
 }
 
-/* The subscribe icon on the footer */
-.subscribe {
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    margin-left: -15px;
-    border: #EBF2F6 1px solid;
-    text-align: center;
-    line-height: 2.4rem;
-    border-radius: 50px;
-    background: #FFF;
-    transition: box-shadow 0.5s;
-}
 
-/* The RSS icon, inserted via icon font */
-.subscribe:before {
-    color: #D2DEE3;
-    font-size: 10px;
-    position: absolute;
-    top: 2px;
-    left: 9px;
-    font-weight: 700;
-    transition: color 0.5s ease;
-}
-
-/* Add a box shadow to on hover */
-.subscribe:hover {
-    box-shadow: rgba(0,0,0,0.05) 0 0 0 3px;
-    transition: box-shadow 0.25s;
-}
-
-.subscribe:hover:before {
-    color: #50585D;
-}
-
-/* CSS tooltip saying "Subscribe!" - initially hidden */
-.tooltip {
-    opacity: 0;
-    display: block;
-    width: 53px;
-    padding: 4px 8px 5px 8px;
-    position:absolute;
-    top: -23px;
-    left: -21px;
-    color: rgba(255,255,255,0.9);
-    font-size: 1.1rem;
-    line-height: 1em;
-    text-align: center;
-    background: #50585D;
-    border-radius: 20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease, top 0.3s ease;
-}
-
-/* The little chiclet arrow under the tooltip, pointing down */
-.tooltip:after {
-    content: " ";
-    border-width: 5px 5px 0 5px;
-    border-style: solid;
-    border-color: #50585D transparent;
-    display: block;
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    margin-left: -5px;
-    z-index: 220;
-    width: 0;
-}
-
-/* On hover, show the tooltip! */
-.subscribe:hover .tooltip {
-    opacity: 1;
-    top: -33px;
-}
 
 /* ==========================================================================
    6. Author profile
@@ -1663,10 +1267,6 @@ body:not(.post-template) .post-title {
 
 @media only screen and (max-width: 900px) {
 
-    .main-nav {
-        padding: 15px;
-    }
-
     blockquote {
         margin-left: 0;
     }
@@ -1794,15 +1394,7 @@ body:not(.post-template) .post-title {
 @media only screen and (max-width: 500px) {
 
     .main-header {
-   /*     margin-bottom: 15px; */
         height: 40%;
-    }
-    
-    /*mmi*/
-    .main-cover {
- /*       bottom: 25px;
-        width: 500px;
-        min-width: 500px; */
     }
 
     .no-cover.main-header {
@@ -1815,12 +1407,6 @@ body:not(.post-template) .post-title {
         padding: 10% 0;
     }
 
-    .main-nav {
-        padding: 0;
-        margin-bottom: 2rem;
-        border-bottom: #e0e4e7 1px solid;
-    }
-
     .blog-logo {
         padding: 10px 10px;
     }
@@ -1829,50 +1415,29 @@ body:not(.post-template) .post-title {
         height: 26px;
     }
 
-    .back-button,
-    .subscribe-button {
+    .back-button {
         height: 44px;
         line-height: 41px;
         border-radius: 0;
         color: #2e2e2e;
         background: transparent;
     }
-    .back-button:hover,
-    .subscribe-button:hover {
+    .back-button:hover {
         border-color: #ebeef0;
         color: #2e2e2e;
         background: #ebeef0;
     }
     
     /*TODO make icon appear with no text for mobile*/
-    .subscribe-button {
-        display: none;
-    }
-    
     .back-button {
         padding: 0 15px 0 10px;
     }
 
-    .subscribe-button {
-        padding: 0 12px;
-    }
-
-    .main-nav.overlay a:hover {
-        color: #fff;
-        border-color: transparent;
-        background: transparent;
-    }
-
-    .no-cover .main-nav.overlay {
-        background: none;
-    }
-    .no-cover .main-nav.overlay .back-button,
-    .no-cover .main-nav.overlay .subscribe-button {
+    .no-cover .main-nav.overlay .back-button {
         border: none;
     }
 
-    .main-nav.overlay .back-button,
-    .main-nav.overlay .subscribe-button {
+    .main-nav.overlay .back-button {
         border-color: transparent;
     }
 

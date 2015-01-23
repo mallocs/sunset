@@ -1,21 +1,23 @@
-    <nav class="navbar navbar-default {{^is "home"}}navbar-static-top{{else}}navbar-static-bottom{{/is}} clearfix" role="navigation">
-      <div class="container">
-        <div class="navbar-header clearfix">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+    <nav role="navigation" class="navbar navbar-default {{^is "home"}}navbar-static-top{{else}}navbar-static-bottom{{/is}} clearfix">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse clearfix">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/me">Me</a></li>
-            <li><a href="https://github.com/mallocs">Code</a></li>
-          </ul>
-          <a href="http://localhost:2368/rss/" class="subscribe-button icon-feed">Subscribe</a>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/me">Me</a></li>
+                <li><a href="http://old.mallocs.net">Old</a></li>
+                <li><a href="https://github.com/mallocs">Code</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a></li>
+            </ul>
         </div>
-      </div>
     </nav>
-
