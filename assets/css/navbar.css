@@ -1,0 +1,128 @@
+/* MMI navbar. Taken largely from bootstrap */
+.navbar {
+  text-transform: uppercase;
+  border-radius: 0; 
+  min-height: 20px;
+  margin-bottom: 0;
+}
+
+.navbar-static-bottom {
+  bottom: 40px;
+}
+
+.navbar-default {
+  background-color: #383838;
+  border: none;
+}
+
+.navbar-default .navbar-text {
+  color: #a8a8a8;
+}
+
+.navbar-nav > li {
+  margin: 0.1em 0.3em; /*TODO*/
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #a8a8a8;
+  font-family: Helvetica, sans-serif;
+  text-decoration: none;
+  font-size: 1em;
+  line-height: 15px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus {
+  color: #FEA03C;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  color: #ddd;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .disabled > a {
+  color: #a8a8a8;
+  background-color: transparent;
+}
+
+.navbar-collapse {
+  padding-left: 10px;
+}
+
+.navbar-right {
+ margin-right: 0;   
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #000;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover > span,
+.navbar-default .navbar-toggle:focus > span {
+  background-color: #FEA03C;
+}
+
+.navbar-default .navbar-collapse {
+ border-color: #000;   
+}
+
+/**Subscribe button**/
+.subscribe-button {
+    display: inline-block;
+    padding: 0 20px;
+    color: #a8a8a8;
+    font-size: 1em;
+    font-family: Helvetica, san-serif;
+    text-transform: uppercase;
+    line-height: 35px;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.subscribe-button:hover,
+.subscribe-button:focus {
+    color: #fea03c;
+    text-decoration: none;
+}
+
+.subscribe-button:before {
+    font-size: 11px;
+    margin-right: 6px;
+}
+
+.main-nav.overlay .subscribe-button {
+    border-color: rgba(255,255,255,0.6);
+}
+.no-cover .subscribe-button {
+    background: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .subscribe-button:hover {
+        border-color: #ebeef0;
+        color: #2e2e2e;
+        background: #ebeef0;
+    }
+    /*TODO make icon appear with no text for mobile*/
+    .subscribe-button {
+        display: none;
+    }
+    .subscribe-button {
+        padding: 0 12px;
+    }
+}
+
+
