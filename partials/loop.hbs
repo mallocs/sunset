@@ -7,7 +7,10 @@
 {{#foreach posts}}
 <article class="{{post_class}}">
     <header class="post-header">
-        <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+        <section class="post-meta">
+            <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
+        </section>
+        <h1 class="post-title"><a href="{{url}}">{{{title}}}</a></h1>
     </header>
     <section class="post-excerpt">
         {{! Add slideshow if it's tagged }}
@@ -21,7 +24,6 @@
         {{author}}
         <span class="post-meta-right">
           {{tags prefix="  "}}
-          <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
         </span>
     </footer>
 </article>
