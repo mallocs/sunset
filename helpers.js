@@ -5,6 +5,8 @@ var slideshows = require('./slideshows.json');
 /***
 Articles should have a directory defined in slideshows.json or we check for a
 directory with the same name as the articleId.
+If the file "sprite.jpg" exists in the slideshow directory, it will be used to
+make the pagination thumbnails.
 ***/
 registerHelper = function (){
     hbs.registerHelper("slideshow", function(articleId) {
@@ -20,12 +22,18 @@ registerHelper = function (){
         if (!fs.existsSync(dir)) {
             return new hbs.SafeString(' ');
         }
+
         var dirList = fs.readdirSync(dir);
-        var out = '<div class="mmi-slideshow">'
-                + '<ul class="carousel">\n';
-            out += '<li class="slide">\n';
-            out += '<img src="' + urlPath + dirList[0] + '">\n';
-            out += '</li>\n';
+        if (fs.existsSync(dir + "sprite.jpg")) {
+            var out = '<div class="mmi-slideshow"';
+                out += 'data-pagination="sprite" data-sprite="' + urlPath + '/sprite.jpg">';
+        } else {
+            var out = '<div class="mmi-slideshow">';
+        }
+        out += '<ul class="carousel">\n';
+        out += '<li class="slide">\n';
+        out += '<img src="' + urlPath + dirList[0] + '">\n';
+        out += '</li>\n';
         for(var i=1, l=dirList.length; i<l; i++) {
             out += '<li class="slide">\n';
             out += '<img data-src="' + urlPath + dirList[i] + '">\n';
