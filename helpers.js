@@ -32,7 +32,9 @@ registerHelper = function (){
         }
 
         for (var i=0, l=dirList.length; i<l; i++) {
-            if (fs.lstatSync(dir + dirList[i]).isDirectory()) {
+            var filePath = dir + dirList[i];
+            if (fs.lstatSync(filePath).isDirectory() 
+                && dirList[i] !== "sprite.jpg") {
                 continue;
             }
             if (i == 0) {
