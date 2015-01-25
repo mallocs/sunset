@@ -26,15 +26,15 @@ registerHelper = function (){
         var dirList = fs.readdirSync(dir);
         if (fs.existsSync(dir + "sprite.jpg")) {
             var out = '<div class="mmi-slideshow"';
-                out += 'data-pagination="sprite" data-sprite="' + urlPath + '/sprite.jpg">';
+                out += 'data-pagination="sprite" data-sprite="' + urlPath + 'sprite.jpg">';
         } else {
             var out = '<div class="mmi-slideshow">';
         }
 
         for (var i=0, l=dirList.length; i<l; i++) {
             var filePath = dir + dirList[i];
-            if (fs.lstatSync(filePath).isDirectory() 
-                && dirList[i] !== "sprite.jpg") {
+            if (fs.lstatSync(filePath).isDirectory() ||
+                dirList[i] === "sprite.jpg") {
                 continue;
             }
             if (i == 0) {
