@@ -30,14 +30,22 @@ registerHelper = function (){
         } else {
             var out = '<div class="mmi-slideshow">';
         }
-        out += '<ul class="carousel">\n';
-        out += '<li class="slide">\n';
-        out += '<img src="' + urlPath + dirList[0] + '">\n';
-        out += '</li>\n';
-        for(var i=1, l=dirList.length; i<l; i++) {
-            out += '<li class="slide">\n';
-            out += '<img data-src="' + urlPath + dirList[i] + '">\n';
-            out += '</li>\n';
+
+        for (var i=0, l=dirList.length; i<l; i++) {
+            if (fs.lstatSync(dir + dirList[i]).isDirectory()) {
+                continue;
+            }
+            if (i == 0) {
+                out += '<ul class="carousel">\n';
+                out += '<li class="slide">\n';
+                out += '<img src="' + urlPath + dirList[0] + '">\n';
+                out += '</li>\n';
+
+            } else {
+                out += '<li class="slide">\n';
+                out += '<img data-src="' + urlPath + dirList[i] + '">\n';
+                out += '</li>\n';
+            }
         }
         return new hbs.SafeString(out + '</ul>\n</div>\n');
     });
