@@ -42,7 +42,7 @@ registerHelper = function (){
             var filePath = dir + fileName;
             var ext = path.extname(fileName).toLowerCase();
             //only print for jpg, gif, or png files
-            if (isImagePath(filePath)) {
+            if (isImagePath(filePath) && fileName !== 'sprite.jpg') {
                 if (first) {
                     out += getSlideLI(urlPath + fileName, false, false);
                     first = false;
