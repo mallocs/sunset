@@ -1,7 +1,6 @@
 var hbs = require('express-hbs');
 var fs = require('fs');
 var path = require('path');
-var slideshows = require('./slideshows.json');
 
 /***
 Articles should have a directory defined in slideshows.json or we check for a
@@ -11,6 +10,12 @@ make the pagination thumbnails.
 ***/
 registerHelper = function (){
     hbs.registerHelper("slideshow", function(articleId) {
+        try {
+            var slideshows = require('./slideshows.json');
+        } catch (ex) {
+            console.log("Couldn't open slideshow.json");
+            return;
+        }
         if (slideshows.articles && slideshows.articles[articleId] &&
             slideshows.articles[articleId].imgDir) {
             var dir = slideshows.rootDir + slideshows.articles[articleId].imgDir;
@@ -25,29 +30,24 @@ registerHelper = function (){
         }
 
         var dirList = fs.readdirSync(dir);
-        if (fs.existsSync(dir + "sprite.jpg")) {
-            var out = '<div class="mmi-slideshow" ';
-                out += 'data-pagination="sprite" data-sprite="' + urlPath + 'sprite.jpg">';
-        } else {
-            var out = '<div class="mmi-slideshow">';
-        }
+        var sprite = fs.existsSync(dir + "sprite.jpg")  ? 
+                     ' data-pagination="sprite" data-sprite="' + 
+                       urlPath + 'sprite.jpg"' : '';
 
-        for (var i=0, l=dirList.length; i<l; i++) {
+        var out = '<div class="mmi-slideshow"' + sprite + '>';
+
+        out += '<ul class="carousel">\n';
+        for (var i=0, first=true, l=dirList.length; i<l; i++) {
             var fileName = dirList[i];
             var filePath = dir + fileName;
             var ext = path.extname(fileName).toLowerCase();
             //only print for jpg, gif, or png files
-            if (!fs.lstatSync(filePath).isDirectory() &&
-               (ext === ".jpg" || ext === ".gif" || ext === ".png")) {
-                if (i == 0) {
-                    out += '<ul class="carousel">\n';
-                    out += '<li class="slide">\n';
-                    out += '<img src="' + urlPath + fileName + '">\n';
-                    out += '</li>\n';
+            if (isImagePath(filePath)) {
+                if (first) {
+                    out += getSlideLI(urlPath + fileName, false, false);
+                    first = false;
                 } else {
-                    out += '<li class="slide">\n';
-                    out += '<img data-src="' + urlPath + fileName + '">\n';
-                    out += '</li>\n';
+                    out += getSlideLI(urlPath + fileName, true, false);
                 }
             }
         }
@@ -55,4 +55,31 @@ registerHelper = function (){
     });
 }
 
+function isImagePath(filePath) {
+    var ext = path.extname(filePath).toLowerCase();
+    if (!fs.lstatSync(filePath).isDirectory() &&
+        (ext === '.jpg' || ext === '.gif' || ext === '.png')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getSlideLI(imgURL, dataSRC, caption) {
+    if (dataSRC !== false) {
+        var src = ' data-src="' + imgURL + '"';
+    } else {
+        var src = ' src="' + imgURL + '"';
+    }
+
+    if (caption !== false) {
+        var caption = ' data-caption="' + caption + '"';
+    } else {
+        var caption = '';
+
+    }
+    return '<li class="slide">\n' +
+           '\t<img' + src + caption + '>\n' +
+           '</li>\n';
+}
 module.exports = registerHelper;
