@@ -13,11 +13,12 @@
         <h1 class="post-title"><a href="{{url}}">{{{title}}}</a></h1>
     </header>
     <section class="post-excerpt">
+        <p>{{content words="26"}}</p>
         {{! Add slideshow if it's tagged }}
         {{#has tag="slideshow"}}
           {{slideshow id}}
         {{/has}}
-        <p>{{content words="26"}} <a class="read-more" href="{{url}}">&raquo;</a></p>
+        <p><a class="read-more" href="{{url}}">&raquo;</a></p>
     </section>
     <footer class="post-meta">
         {{#if author.image}}<img class="author-thumb" src="{{author.image}}" alt="Author image" nopin="nopin" />{{/if}}
