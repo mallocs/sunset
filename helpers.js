@@ -5,6 +5,8 @@ var path = require('path');
 /***
 Articles should have a directory defined in slideshows.json or we check for a
 directory with the same name as the articleId.
+The slideshow can have a slides.json file which can include captions,
+photographer, and organization.
 If the file "sprite.jpg" exists in the slideshow directory, it will be used to
 make the pagination thumbnails.
 ***/
@@ -21,38 +23,72 @@ registerHelper = function (){
             var dir = slideshows.rootDir + slideshows.articles[articleId].imgDir;
             var urlPath = slideshows.urlPath + slideshows.articles[articleId].imgDir;
         } else {
-            var dir = slideshows.rootDir + articleId + "/";
-            var urlPath = slideshows.urlPath + articleId + "/";
+            var dir = slideshows.rootDir + articleId;
+            var urlPath = slideshows.urlPath + articleId;
         }
+
+        if (dir.substr(dir.length - 1) !== '/') {
+            dir += '/';
+        } 
+        if (urlPath.substr(urlPath.length - 1) !== '/') {
+            urlPath += '/';
+        } 
 
         if (!fs.existsSync(dir)) {
             return new hbs.SafeString(' ');
         }
 
-        var dirList = fs.readdirSync(dir);
         var sprite = fs.existsSync(dir + "sprite.jpg")  ? 
                      ' data-pagination="sprite" data-sprite="' + 
                        urlPath + 'sprite.jpg"' : '';
 
-        var out = '<div class="mmi-slideshow"' + sprite + '>';
+        try {
+            var slideshow = require(dir + 'slides.json'); 
+            var out = '<div class="mmi-slideshow"' + sprite + ' data-captions="true">\n';
+            out += getULFromJson(slideshow, urlPath);
+        } catch (ex) {
+            var out = '<div class="mmi-slideshow"' + sprite + '>\n';
+            out += getULFromDir(dir, urlPath);
+        }      
+        out += '</div>\n';
+        return new hbs.SafeString(out);
+    });
+}
 
-        out += '<ul class="carousel">\n';
-        for (var i=0, first=true, l=dirList.length; i<l; i++) {
-            var fileName = dirList[i];
-            var filePath = dir + fileName;
-            var ext = path.extname(fileName).toLowerCase();
-            //only print for jpg, gif, or png files
-            if (isImagePath(filePath) && fileName !== 'sprite.jpg') {
-                if (first) {
-                    out += getSlideLI(urlPath + fileName, false, false);
-                    first = false;
-                } else {
-                    out += getSlideLI(urlPath + fileName, true, false);
-                }
+function getULFromDir(dir, urlPath) {
+    var dirList = fs.readdirSync(dir);
+    var ul = '<ul class="carousel">\n';
+    for (var i=0, first=true, l=dirList.length; i<l; i++) {
+        var fileName = dirList[i];
+        var filePath = dir + fileName;
+        var ext = path.extname(fileName).toLowerCase();
+        //only print for jpg, gif, or png files
+        if (isImagePath(filePath) && fileName !== 'sprite.jpg') {
+            if (first) {
+                ul += getSlideLI(urlPath + fileName, false, false);
+                first = false;
+            } else {
+                ul += getSlideLI(urlPath + fileName, true, false);
             }
         }
-        return new hbs.SafeString(out + '</ul>\n</div>\n');
-    });
+    }
+    return ul + '</ul>\n';
+}
+
+function getULFromJson(slideshow, urlPath) {
+    var ul = '<ul class="carousel">\n';
+    for (var i=0, first=true, l=slideshow.slides.length; i<l; i++) {
+        var slide = slideshow.slides[i];
+        var fileName = slide.filename;
+        var caption = slide.caption
+        if (first) {
+            ul += getSlideLI(urlPath + fileName, false, caption);
+            first = false;
+        } else {
+            ul += getSlideLI(urlPath + fileName, true, caption);
+        }
+    }
+    return ul + '</ul>\n';
 }
 
 function isImagePath(filePath) {
@@ -72,12 +108,12 @@ function getSlideLI(imgURL, dataSRC, caption) {
         var src = ' src="' + imgURL + '"';
     }
 
-    if (caption !== false) {
-        var caption = ' data-caption="' + caption + '"';
-    } else {
+    if (caption === false || caption === '') {
         var caption = '';
-
+    } else {
+        var caption = ' data-caption="' + caption + '"';
     }
+
     return '<li class="slide">\n' +
            '\t<img' + src + caption + '>\n' +
            '</li>\n';
