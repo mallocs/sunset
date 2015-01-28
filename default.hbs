@@ -40,16 +40,14 @@
 
     {{! Slideshow JS }}
 
-        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="{{asset "js/mmi-slideshow.js"}}"></script>
+        <script type="text/javascript" src="{{asset "js/jquery-ui.min.js"}}"></script>
+        <script type="text/javascript" src="{{asset "js/mmi-slideshow.min.js"}}"></script>
         <script type="text/javascript">
         $(function() {
-            var ss = $(".mmi-slideshow").slideshow({transition: "fade", captions: false,
+            var ss = $(".mmi-slideshow").slideshow({transition: "fade", captions: false, 
 responsive: true, width: "100%", height: "700px", dark: true, insideNavigation: true});
+            $.fn.title_sign("{{@blog.title}}");
         });
         </script> 
-        <script type="text/javascript">
-            $.fn.title_sign("{{@blog.title}}");
-        </script>
 </body>
 </html>
