@@ -26,7 +26,7 @@ registerHelper = function (){
             var dir = slideshows.rootDir + articleId;
             var urlPath = slideshows.urlPath + articleId;
         }
-
+        
         if (dir.substr(dir.length - 1) !== '/') {
             dir += '/';
         } 
