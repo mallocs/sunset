@@ -1,4 +1,4 @@
-/*! mmi-slideshow - v0.0.0 - 2015-01-20
+/*! mmi-slideshow - v0.0.0 - 2015-01-29
 * https://github.com/mallocs/mmi-slideshow
 * Copyright (c) 2015 Marcus Ulrich; Licensed MIT */
 ;(function( $ ) {
@@ -49,7 +49,7 @@ $.widget("mmi.slideshow", {
         autoHideFooter: false,                  // Show/Hide Footer on mouseIn/Out events
         dark: false,                            // Use dark color scheme.
         inside: false,                          // Extra elements (Nav, pagination, etc) appear inside the carousel.
-        insideNavigation: false,                 // Just the previous and next arrows appear inside the carousel.
+        insideNavigation: false,                // Just the previous and next arrows appear inside the carousel.
         responsive: false,                      // Images will automatically be size responsibly to carousel width.
 
         pagination: true,                       // Show pagination.

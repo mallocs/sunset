@@ -49,14 +49,17 @@
             }
         }
 
- //       var $img = $("img").on('load', updateImageWidth);
-//        function casperFullImg() {
-//            $img.each(updateImageWidth);
-//        }
+        /***
+        mmi
+        Don't resize images.
+        var $img = $("img").on('load', updateImageWidth);
+        function casperFullImg() {
+            $img.each(updateImageWidth);
+        }
 
-//        casperFullImg();
-//        $(window).smartresize(casperFullImg);
-
+        casperFullImg();
+        $(window).smartresize(casperFullImg);
+        ***/
         $(".scroll-down").arctic_scroll();
 
     });

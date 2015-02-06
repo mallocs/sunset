@@ -5,9 +5,11 @@
 
 {{! Everything inside the #post tags pulls data from the post }}
 {{#post}}
-{{> default-navbar}}
+
 <header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
 </header>
+{{> navbar}}
+
 <main class="content" role="main">
 
     <article class="{{post_class}}">
@@ -22,11 +24,10 @@
         </header>
 
         <section class="post-content">
-
         {{! Add slideshow if it's tagged }}
-        {{#has tag="slideshow"}}
-          {{slideshow id}}
-        {{/has}}
+            {{#has tag="slideshow"}}
+                {{slideshow id}}
+            {{/has}}            
 
             {{content}}
         </section>

@@ -10,10 +10,10 @@
         <section class="post-meta">
             <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
         </section>
-        <h1 class="post-title"><a href="{{url}}">{{{title}}}</a></h1>
+        <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>{{content words="26"}}</p>
+        {{content words="26"}}
         {{! Add slideshow if it's tagged }}
         {{#has tag="slideshow"}}
           {{slideshow id}}
@@ -24,7 +24,7 @@
         {{#if author.image}}<img class="author-thumb" src="{{author.image}}" alt="Author image" nopin="nopin" />{{/if}}
         {{author}}
         <span class="post-meta-right">
-          {{tags prefix="  "}}
+        {{tags prefix=" "}}
         </span>
     </footer>
 </article>
