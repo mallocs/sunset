@@ -800,11 +800,11 @@ Put a semi-opaque radial gradient behind the icon to make it more visible
     margin: 4rem auto;
     padding-bottom: 4rem;
     border-bottom: #9eabb3 1px solid; /*mmi*/
-    word-wrap: break-word;
+/*mmi    word-wrap: break-word;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
-    hyphens: auto;
+    hyphens: auto; */
 }
 
 /* Add a little circle in the middle of the border-bottom on our .post
@@ -1293,7 +1293,7 @@ mmi
 .author-meta span {
     display: inline-block;
     margin: 0 2rem 1rem 0;
-    word-wrap: break-word;
+ /*mmi   word-wrap: break-word;*/
 }
 .author-meta a {
     text-decoration: none;
