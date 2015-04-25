@@ -1,0 +1,10 @@
+{
+  "name": "Sunset Production",
+  "version": "0.0.1",
+  "author": "Marcus Ulrich <ulrich@mallocs.net>",
+  "repository" : { 
+     "type" : "git", 
+     "url" : "http://github.com/npm/npm.git"
+  },
+  "license": "MIT"
+}

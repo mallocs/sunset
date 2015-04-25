@@ -20,10 +20,6 @@ module.exports = function(grunt) {
 
         // Watch files for changes for livereload and sass
         watch: {
-            sass: {
-                files: 'assets/sass/**/*.{scss,sass}',
-                tasks: ['sass', 'autoprefixer']
-            },
             scripts: {
                 files: 'assets/js/*.js',
                 options:{
@@ -70,31 +66,20 @@ module.exports = function(grunt) {
             production: {
                 files: [
                     {
-                        src: ['*.js*', '*.hbs'],
+                        src: ['helpers.js', 'slideshows.json', '*.hbs'],
                         dest: 'production/'
+                    },
+                    {
+                        src: ['package-production.json'],
+                        dest: 'production/package.json'
                     },
                     {
                         src: 'partials/*.hbs',
                         dest: 'production/'
                     },
                     {
-                        src: ['assets/**/*', '!assets/css/**/*', '!assets/js/**/*', '!assets/sass/**/*'],
+                        src: ['assets/**/*', '!assets/css/**/*', '!assets/js/**/*'],
                         dest: 'production/'
-                    }
-                ]
-            }
-        },
-
-        // Compile .scss files
-        sass: {
-            production: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'assets/sass',
-                        src: '*.scss',
-                        dest: '.tmp/assets/css',
-                        ext: '.css'
                     }
                 ]
             }
@@ -154,21 +139,20 @@ module.exports = function(grunt) {
 
         // Concat & minify assets
         useminPrepare: {
-            html: 'default.hbs',
+            html: '*.hbs',
             options: {
                 dest: 'production'
             }
 
         },
         usemin: {
-            html: 'production/default.hbs',
+            html: 'production/*.hbs',
             css: ['production/assets/css/{,*/}*.css']
         },
 
         concurrent: {
             production: [
                 'clean:production',
-                'sass',
                 'imagemin',
                 'svgmin'
             ]
@@ -185,7 +169,6 @@ module.exports = function(grunt) {
 
     // livereload for development mode
     grunt.registerTask('start', [
-        'sass',
         'autoprefixer',
         'open',
         'watch'
@@ -193,7 +176,6 @@ module.exports = function(grunt) {
 
     // Update assets
     grunt.registerTask('update', [
-        'sass',
         'autoprefixer'
     ]);
 
@@ -207,12 +189,12 @@ module.exports = function(grunt) {
         'cssmin',
         'copy:production',
         'rev',
-        'usemin'
+        'usemin',
+        'clean'
     ]);
 
     // Same as update
     grunt.registerTask('default', [
-        'sass',
         'autoprefixer'
     ]);
 
@@ -227,7 +209,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-rev');
-    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-usemin');
 

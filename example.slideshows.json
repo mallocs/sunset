@@ -1,0 +1,9 @@
+{
+  "rootDir":
+    "content/images/slideshows/",
+  "urlPath": "/content/images/slideshows/",
+  "articles": {
+    "1": {"imgDir": "someDirectoryUnder_slideshows"},
+    "2": {"imgDir": "someOtherDirectory"}
+  }
+}
