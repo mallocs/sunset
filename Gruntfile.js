@@ -58,7 +58,8 @@ module.exports = function(grunt) {
 
         // Clean up for new build
         clean: {
-            production: ['.tmp', 'production']
+            temp: ['.tmp'],
+            production: ['production']
         },
 
         // Move files over for production release
@@ -181,6 +182,7 @@ module.exports = function(grunt) {
 
     // Build release
     grunt.registerTask('build', [
+        'clean',
         'concurrent:production',
         'autoprefixer',
         'useminPrepare',
@@ -190,7 +192,7 @@ module.exports = function(grunt) {
         'copy:production',
         'rev',
         'usemin',
-        'clean'
+        'clean:temp'
     ]);
 
     // Same as update
