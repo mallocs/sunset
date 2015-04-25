@@ -106,7 +106,7 @@ module.exports = function(grunt) {
             production: {
                 files: {
                     src: [
-                        'production/assets/css/vendor.css',
+                        'production/assets/css/*.css',
                         'production/assets/images/background/*.{gif,jpeg,jpg,png,svg}',
                         'production/assets/fonts/{,*/}*.*',
                         'production/assets/js/{,*/}*.js'
